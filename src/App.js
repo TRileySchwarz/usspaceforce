@@ -1,23 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import UncleSam from './assets/unclesam.png'
+//import Background from './assets/background.png'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={UncleSam} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to start making the usspaceforce a reality.
+          Together we can make the usspaceforce a reality.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
