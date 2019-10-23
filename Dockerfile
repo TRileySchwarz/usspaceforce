@@ -1,17 +1,25 @@
-# base image
-FROM node:12.2.0-alpine
+FROM alpine
 
-# set working directory
-WORKDIR /app
+EXPOSE 80
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+ADD config/default.conf /etc/nginx/conf.d/default.conf
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-RUN npm install react-scripts@3.0.1 -g --silent
+COPY . /var/www/localhost/htdocs
 
+RUN apk add nginx && \
+    mkdir /run/nginx && \
+    apk add nodejs && \
+    apk add npm && \
+    cd /var/www/localhost/htdocs && \
+    npm install && \
+    npm run build && \
+    apk del nodejs && \
+    apk del npm && \
+    mv /var/www/localhost/htdocs/build /var/www/localhost && \
+    cd /var/www/localhost/htdocs && \
+    rm -rf * && \
+    mv /var/www/localhost/build /var/www/localhost/htdocs;
 
-# start app
-CMD ["npm", "start"]
+CMD ["/bin/sh", "-c", "exec nginx -g 'daemon off;';"]
+
+WORKDIR /var/www/localhost/htdocs
