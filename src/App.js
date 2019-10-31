@@ -1,11 +1,11 @@
 import React from 'react';
-import UncleSam from './assets/unclesam.png'
-//import Background from './assets/background.png'
+import Samurai from './assets/samuraiAvatar.jpg'
 import './App.css';
 
 function App() {
 
 
+        // Example api request
         // create a new XMLHttpRequest
         let xhr = new XMLHttpRequest();
 
@@ -13,7 +13,8 @@ function App() {
         xhr.addEventListener('load', () => {
             // update the state of the component with the result here
             console.log(xhr.responseText)
-        })
+        });
+
         // open the request with the verb and the url
         xhr.open('GET', 'https://dog.ceo/api/breeds/list/all');
         // send the request
@@ -23,10 +24,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={UncleSam} className="App-logo" alt="logo" />
-        <p>
-          Together we can make the usspaceforce a reality.
-        </p>
+        <img src={Samurai} className="App-logo" alt="logo" />
       </header>
     </div>
   );
